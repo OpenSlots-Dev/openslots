@@ -4,7 +4,7 @@
 
 **Class:** [CS 5610 Web Development](https://johnguerra.co/classes/webDevelopment_online_fall_2026/)
 
-**Live site:** yet to add deployed URL
+**Live site:** [https://openslots.onrender.com/](https://openslots.onrender.com/)
 
 **Demo video:** yet to add video link
 
