@@ -1,0 +1,84 @@
+:root {
+  --ink: #1e3440;
+  --ink-soft: #4a6170;
+  --surface: #f5f8f7;
+  --panel: #ffffff;
+  --accent: #2f7d6d;
+  --banner: #fbe3a6;
+  --font: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--surface);
+  line-height: 1.55;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.crisis-banner {
+  padding: 0.5rem 1rem;
+  background: var(--banner);
+  text-align: center;
+  font-weight: 600;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  background: var(--panel);
+  border-bottom: 1px solid #dde5e3;
+}
+
+.site-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 4vw, 2rem) 3rem;
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+}
+
+.disclaimer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
