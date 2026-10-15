@@ -1,11 +1,13 @@
 import express from "express";
 import { connectDB } from "./db/myMongoDB.js";
 import providersRouter from "./routes/providers.js";
+import { anonymousId } from "./middleware/anonymousId.js";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
+app.use(anonymousId);
 app.use(express.static("frontend"));
 
 app.use("/api/providers", providersRouter);
