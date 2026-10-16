@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Therapy Experiences | OpenSlots</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/experiences.css" />
+    <script type="module" src="js/experiences.js"></script>
+  </head>
+
+  <body>
+    <aside class="crisis-banner" role="note">
+      In crisis? Call or text <a href="tel:988">988</a> (Suicide &amp; Crisis
+      Lifeline).
+    </aside>
+
+    <header class="site-header">
+      <a class="site-name" href="index.html">OpenSlots</a>
+
+      <nav aria-label="Main">
+        <ul class="site-nav">
+          <li><a href="availability.html">Availability</a></li>
+          <li>
+            <a href="experiences.html" aria-current="page">Experiences</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="page experiences-page">
+      <header class="page-intro">
+        <h1>Therapy experience reports</h1>
+        <p class="lead">
+          Search for a provider to read community reports or share your
+          experience.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="provider-search-heading">
+        <h2 id="provider-search-heading">Find a provider</h2>
+
+        <form id="provider-search-form" class="provider-search">
+          <label for="provider-search">Provider name</label>
+
+          <div class="search-row">
+            <input
+              id="provider-search"
+              name="q"
+              type="search"
+              autocomplete="off"
+              placeholder="Enter a provider name"
+              required
+            />
+            <button type="submit">Search</button>
+          </div>
+        </form>
+
+        <p id="provider-search-status" class="status" role="status"></p>
+        <ul
+          id="provider-results"
+          class="provider-results"
+          aria-label="Provider search results"
+        ></ul>
+      </section>
+
+      <section id="provider-workspace" hidden>
+        <header class="selected-provider">
+          <div>
+            <p class="eyebrow">Selected provider</p>
+            <h2 id="selected-provider-name"></h2>
+            <p id="selected-provider-details"></p>
+          </div>
+
+          <div class="summary" aria-label="Experience report summary">
+            <p>
+              <strong id="average-rating">No rating</strong>
+              <span>Average rating</span>
+            </p>
+            <p>
+              <strong id="report-count">0</strong>
+              <span>Reports</span>
+            </p>
+          </div>
+        </header>
+
+        <section class="panel" aria-labelledby="reports-heading">
+          <div class="section-heading">
+            <div>
+              <h2 id="reports-heading">Browse reports</h2>
+              <p>Filter reports for the selected provider.</p>
+            </div>
+          </div>
+
+          <form id="report-filter-form" class="filter-grid">
+            <div>
+              <label for="filter-therapy-type">Therapy type</label>
+              <select id="filter-therapy-type" name="therapyType">
+                <option value="">All types</option>
+                <option value="Individual">Individual</option>
+                <option value="Couples">Couples</option>
+                <option value="Family">Family</option>
+                <option value="Group">Group</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="filter-visit-format">Visit format</label>
+              <select id="filter-visit-format" name="visitFormat">
+                <option value="">All formats</option>
+                <option value="In person">In person</option>
+                <option value="Telehealth">Telehealth</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="filter-rating">Rating</label>
+              <select id="filter-rating" name="rating">
+                <option value="">All ratings</option>
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="filter-recommendation">Recommendation</label>
+              <select id="filter-recommendation" name="wouldRecommend">
+                <option value="">All reports</option>
+                <option value="true">Would recommend</option>
+                <option value="false">Would not recommend</option>
+              </select>
+            </div>
+
+            <div class="filter-actions">
+              <button type="submit">Apply filters</button>
+              <button id="clear-filters" type="button" class="secondary-button">
+                Clear
+              </button>
+            </div>
+          </form>
+
+          <p id="reports-status" class="status" role="status"></p>
+          <div id="reports-list" class="reports-list"></div>
+
+          <nav
+            id="pagination"
+            class="pagination"
+            aria-label="Report pages"
+            hidden
+          >
+            <button id="previous-page" type="button" class="secondary-button">
+              Previous
+            </button>
+            <span id="page-status"></span>
+            <button id="next-page" type="button" class="secondary-button">
+              Next
+            </button>
+          </nav>
+        </section>
+
+        <section class="panel" aria-labelledby="report-form-heading">
+          <h2 id="report-form-heading">Share your experience</h2>
+
+          <p class="privacy-notice">
+            Keep your report general. Do not include diagnoses, medications,
+            treatment outcomes, client names, personal health information,
+            medical claims, or accusations.
+          </p>
+
+          <form id="experience-form">
+            <input id="report-id" name="reportId" type="hidden" />
+            <input id="provider-id" name="providerId" type="hidden" />
+
+            <div class="form-grid">
+              <div>
+                <label for="therapy-type">Therapy type</label>
+                <select id="therapy-type" name="therapyType" required>
+                  <option value="">Select a type</option>
+                  <option value="Individual">Individual</option>
+                  <option value="Couples">Couples</option>
+                  <option value="Family">Family</option>
+                  <option value="Group">Group</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="visit-format">Visit format</label>
+                <select id="visit-format" name="visitFormat" required>
+                  <option value="">Select a format</option>
+                  <option value="In person">In person</option>
+                  <option value="Telehealth">Telehealth</option>
+                  <option value="Hybrid">Hybrid</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="rating">Rating</label>
+                <select id="rating" name="rating" required>
+                  <option value="">Select a rating</option>
+                  <option value="5">5 - Excellent</option>
+                  <option value="4">4 - Good</option>
+                  <option value="3">3 - Average</option>
+                  <option value="2">2 - Below average</option>
+                  <option value="1">1 - Poor</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="would-recommend">Would you recommend them?</label>
+                <select id="would-recommend" name="wouldRecommend" required>
+                  <option value="">Select an answer</option>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="experienced-at">Experience date</label>
+                <input
+                  id="experienced-at"
+                  name="experiencedAt"
+                  type="date"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="summary-field">
+              <label for="experience-summary">
+                Experience summary <span>(optional)</span>
+              </label>
+              <textarea
+                id="experience-summary"
+                name="experienceSummary"
+                rows="5"
+                maxlength="300"
+                aria-describedby="summary-help summary-count"
+              ></textarea>
+
+              <div class="field-help">
+                <span id="summary-help">Maximum 300 characters.</span>
+                <span id="summary-count">0/300</span>
+              </div>
+            </div>
+
+            <p id="form-message" class="status" role="status"></p>
+
+            <div class="form-actions">
+              <button id="submit-report" type="submit">Submit report</button>
+              <button
+                id="cancel-edit"
+                type="button"
+                class="secondary-button"
+                hidden
+              >
+                Cancel edit
+              </button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <p class="disclaimer">
+        OpenSlots is community-maintained and is not medical advice. Experiences
+        are personal reports and may not reflect what another visitor will
+        experience.
+      </p>
+    </main>
+  </body>
+</html>
