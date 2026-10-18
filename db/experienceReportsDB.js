@@ -29,7 +29,7 @@ export async function findExperienceReports({
   rating,
   wouldRecommend,
   page = 1,
-  limit = 20,
+  limit = 10,
 }) {
   const filter = {};
 
@@ -57,6 +57,64 @@ export async function findExperienceReports({
 
   return {
     items,
+    total,
+    page,
+    limit,
+    pages: Math.ceil(total / limit),
+  };
+}
+
+export async function findOwnedExperienceReports({
+  authorId,
+  page = 1,
+  limit = 10,
+}) {
+  const [result] = await experienceReports()
+    .aggregate([
+      {
+        $match: { authorId },
+      },
+      {
+        $sort: { createdAt: -1 },
+      },
+      {
+        $facet: {
+          items: [
+            {
+              $skip: (page - 1) * limit,
+            },
+            {
+              $limit: limit,
+            },
+            {
+              $lookup: {
+                from: "providers",
+                localField: "providerId",
+                foreignField: "_id",
+                as: "provider",
+              },
+            },
+            {
+              $unwind: {
+                path: "$provider",
+                preserveNullAndEmptyArrays: true,
+              },
+            },
+          ],
+          metadata: [
+            {
+              $count: "total",
+            },
+          ],
+        },
+      },
+    ])
+    .toArray();
+
+  const total = result.metadata[0]?.total || 0;
+
+  return {
+    items: result.items,
     total,
     page,
     limit,

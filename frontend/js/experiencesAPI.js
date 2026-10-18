@@ -20,7 +20,7 @@ export function getExperienceReports({
   rating = "",
   wouldRecommend = "",
   page = 1,
-  limit = 20,
+  limit = 10,
 } = {}) {
   const params = new URLSearchParams({ page, limit });
 
@@ -34,6 +34,12 @@ export function getExperienceReports({
   }
 
   return requestJSON(`/api/experience-reports?${params}`);
+}
+
+export function getMyExperienceReports({ page = 1, limit = 50 } = {}) {
+  const params = new URLSearchParams({ page, limit });
+
+  return requestJSON(`/api/experience-reports/mine?${params}`);
 }
 
 export function getExperienceReport(id) {

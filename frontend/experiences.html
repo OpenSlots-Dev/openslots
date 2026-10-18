@@ -30,12 +30,49 @@
 
     <main class="page experiences-page">
       <header class="page-intro">
-        <h1>Therapy experience reports</h1>
-        <p class="lead">
-          Search for a provider to read community reports or share your
-          experience.
+        <div class="page-title-row">
+          <div>
+            <h1>Therapy experience reports</h1>
+
+            <p class="lead">
+              Search for a provider to read community reports or share your
+              experience.
+            </p>
+          </div>
+
+          <button
+            id="view-my-reports"
+            type="button"
+            aria-expanded="false"
+            aria-controls="my-reports-panel"
+          >
+            View your reports
+          </button>
+        </div>
+
+        <p class="demo-notice">
+          Reports marked “Demo data” are fictional examples generated for
+          testing.
         </p>
       </header>
+
+      <section
+        id="my-reports-panel"
+        class="panel my-reports-panel"
+        aria-labelledby="my-reports-heading"
+        hidden
+      >
+        <div class="my-reports-heading">
+          <h2 id="my-reports-heading">View your reports</h2>
+
+          <button id="close-my-reports" type="button" class="secondary-button">
+            Close
+          </button>
+        </div>
+
+        <p id="my-reports-status" class="status" role="status"></p>
+        <div id="my-reports-list" class="reports-list"></div>
+      </section>
 
       <section class="panel" aria-labelledby="provider-search-heading">
         <h2 id="provider-search-heading">Find a provider</h2>

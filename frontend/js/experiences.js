@@ -4,11 +4,17 @@ import {
   getExperienceReport,
   getExperienceReports,
   getExperienceSummary,
+  getMyExperienceReports,
   updateExperienceReport,
 } from "./experiencesAPI.js";
 import { searchProviders } from "./providersAPI.js";
 
 const elements = {
+  viewMyReports: document.querySelector("#view-my-reports"),
+  myReportsPanel: document.querySelector("#my-reports-panel"),
+  closeMyReports: document.querySelector("#close-my-reports"),
+  myReportsStatus: document.querySelector("#my-reports-status"),
+  myReportsList: document.querySelector("#my-reports-list"),
   providerSearchForm: document.querySelector("#provider-search-form"),
   providerSearchInput: document.querySelector("#provider-search"),
   providerSearchStatus: document.querySelector("#provider-search-status"),
@@ -153,6 +159,11 @@ function renderReports(reports) {
 
     const meta = document.createElement("div");
     meta.className = "report-meta";
+
+    if (report.isDemo) {
+      appendTextElement(meta, "span", "Demo data", "demo-data-badge");
+    }
+
     appendTextElement(meta, "span", report.therapyType);
     appendTextElement(meta, "span", report.visitFormat);
     appendTextElement(
@@ -208,6 +219,167 @@ function renderReports(reports) {
     }
 
     elements.reportsList.append(article);
+  }
+}
+
+function closeMyReportsPanel() {
+  elements.myReportsPanel.hidden = true;
+  elements.viewMyReports.setAttribute("aria-expanded", "false");
+  elements.viewMyReports.focus();
+}
+
+async function editMyReport(report) {
+  if (!report.provider) {
+    setStatus(
+      elements.myReportsStatus,
+      "The provider for this report is no longer available.",
+      "error"
+    );
+    return;
+  }
+
+  closeMyReportsPanel();
+  await selectProvider(report.provider);
+  await startEditing(report._id);
+}
+
+async function deleteMyReport(id) {
+  const confirmed = window.confirm(
+    "Delete this experience report? This cannot be undone."
+  );
+
+  if (!confirmed) return;
+
+  try {
+    await deleteExperienceReport(id);
+
+    if (elements.reportId.value === id) {
+      resetReportForm();
+    }
+
+    await loadMyReports();
+
+    if (state.selectedProvider) {
+      await Promise.all([loadReports(), loadSummary()]);
+    }
+
+    setStatus(elements.myReportsStatus, "Report deleted.", "success");
+  } catch (error) {
+    setStatus(elements.myReportsStatus, error.message, "error");
+  }
+}
+
+function renderMyReports(reports) {
+  elements.myReportsList.replaceChildren();
+
+  if (reports.length === 0) {
+    appendTextElement(
+      elements.myReportsList,
+      "p",
+      "You have not submitted any experience reports from this browser."
+    );
+    return;
+  }
+
+  for (const report of reports) {
+    const article = document.createElement("article");
+    article.className = "report-card";
+
+    appendTextElement(
+      article,
+      "h3",
+      report.provider?.name || "Provider unavailable",
+      "my-report-provider"
+    );
+
+    const rating = appendTextElement(
+      article,
+      "p",
+      `${"★".repeat(report.rating)}${"☆".repeat(5 - report.rating)}`
+    );
+    rating.setAttribute("aria-label", `${report.rating} out of 5 stars`);
+
+    const meta = document.createElement("div");
+    meta.className = "report-meta";
+    appendTextElement(meta, "span", report.therapyType);
+    appendTextElement(meta, "span", report.visitFormat);
+    appendTextElement(
+      meta,
+      "span",
+      report.wouldRecommend ? "Would recommend" : "Would not recommend"
+    );
+    article.append(meta);
+
+    if (report.experienceSummary) {
+      appendTextElement(
+        article,
+        "p",
+        report.experienceSummary,
+        "report-summary"
+      );
+    }
+
+    appendTextElement(
+      article,
+      "p",
+      `Experience date: ${formatDate(report.experiencedAt)}`,
+      "report-date"
+    );
+
+    const actions = document.createElement("div");
+    actions.className = "report-actions";
+
+    const editButton = appendTextElement(
+      actions,
+      "button",
+      "Edit",
+      "secondary-button"
+    );
+    editButton.type = "button";
+    editButton.disabled = !report.provider;
+    editButton.addEventListener("click", () => {
+      editMyReport(report);
+    });
+
+    const deleteButton = appendTextElement(
+      actions,
+      "button",
+      "Delete",
+      "delete-button"
+    );
+    deleteButton.type = "button";
+    deleteButton.addEventListener("click", () => {
+      deleteMyReport(report._id);
+    });
+
+    article.append(actions);
+    elements.myReportsList.append(article);
+  }
+}
+
+async function loadMyReports() {
+  elements.myReportsPanel.hidden = false;
+  elements.viewMyReports.setAttribute("aria-expanded", "true");
+  elements.myReportsList.replaceChildren();
+  setStatus(elements.myReportsStatus, "Loading your reports...");
+
+  try {
+    const result = await getMyExperienceReports();
+    renderMyReports(result.items);
+
+    const message =
+      result.total > result.items.length
+        ? `Showing ${result.items.length} of your ${result.total} reports.`
+        : `${result.total} report${result.total === 1 ? "" : "s"} found.`;
+
+    setStatus(elements.myReportsStatus, message);
+
+    elements.myReportsPanel.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  } catch (error) {
+    setStatus(elements.myReportsStatus, error.message, "error");
   }
 }
 
@@ -399,6 +571,14 @@ elements.experienceSummary.addEventListener("input", () => {
 
 elements.cancelEdit.addEventListener("click", () => {
   resetReportForm();
+});
+
+elements.viewMyReports.addEventListener("click", async () => {
+  await loadMyReports();
+});
+
+elements.closeMyReports.addEventListener("click", () => {
+  closeMyReportsPanel();
 });
 
 elements.experienceForm.addEventListener("submit", async (event) => {

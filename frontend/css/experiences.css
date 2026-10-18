@@ -3,8 +3,63 @@
 }
 
 .page-intro {
-  max-width: 48rem;
   margin-bottom: 2rem;
+}
+
+.page-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.page-title-row > div {
+  max-width: 48rem;
+}
+
+.page-title-row h1 {
+  margin-top: 0;
+}
+
+.page-title-row > button {
+  flex-shrink: 0;
+  width: auto;
+  margin-top: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--accent);
+  background: transparent;
+  white-space: nowrap;
+}
+
+.page-title-row > button:hover {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.my-reports-panel[hidden] {
+  display: none;
+}
+
+.my-reports-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.my-reports-heading h2 {
+  margin: 0;
+}
+
+.my-report-provider {
+  margin: 0 0 0.25rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.demo-notice {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
 }
 
 .panel {
@@ -231,6 +286,12 @@
   font-size: 0.85rem;
 }
 
+.report-meta .demo-data-badge {
+  color: #5d4300;
+  background: var(--banner);
+  font-weight: 700;
+}
+
 .report-summary {
   white-space: pre-wrap;
 }
@@ -296,6 +357,15 @@
   display: flex;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.page-title-row {
+  display: block;
+}
+
+.page-title-row > button {
+  width: auto;
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 44rem) {

@@ -4,6 +4,7 @@ import {
   deleteExperienceReport,
   findExperienceReportById,
   findExperienceReports,
+  findOwnedExperienceReports,
   getProviderExperienceSummary,
   updateExperienceReport,
 } from "../db/experienceReportsDB.js";
@@ -152,7 +153,7 @@ router.get("/", async (req, res) => {
   }
 
   const page = toPositiveInt(req.query.page, 1);
-  const limit = Math.min(toPositiveInt(req.query.limit, 20), MAX_LIMIT);
+  const limit = Math.min(toPositiveInt(req.query.limit, 10), MAX_LIMIT);
 
   const result = await findExperienceReports({
     providerId,
@@ -176,6 +177,22 @@ router.get("/summary/:providerId", async (req, res) => {
   }
 
   res.json(await getProviderExperienceSummary(req.params.providerId));
+});
+
+router.get("/mine", async (req, res) => {
+  const page = toPositiveInt(req.query.page, 1);
+  const limit = Math.min(toPositiveInt(req.query.limit, 10), MAX_LIMIT);
+
+  const result = await findOwnedExperienceReports({
+    authorId: req.anonId,
+    page,
+    limit,
+  });
+
+  res.json({
+    ...result,
+    items: result.items.map((report) => toPublic(req, report)),
+  });
 });
 
 router.get("/:id", async (req, res) => {
