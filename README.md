@@ -16,6 +16,27 @@ OpenSlots helps people looking for mental health care find therapists who are
 actually accepting new patients, and read community experience reports about
 those providers.
 
+### Therapy experience reports
+
+Users can search for a provider and browse reports by therapy type, visit
+format, rating, and recommendation. Each provider displays an average rating
+and report count calculated through MongoDB aggregation.
+
+Users can submit, edit, and delete their own reports. The **View your reports** button provides
+quick access to reports created from the current browser.
+
+## How to use
+
+1. Open **Experiences** from the navigation.
+2. Search for a provider by name and select a result.
+3. Browse reports or apply the available filters.
+4. Complete the form to submit an experience report.
+5. Use **View your reports** to edit or delete reports submitted from the
+   current browser.
+
+Do not include diagnoses, medications, treatment outcomes, client names,
+personal health information, medical claims, or accusations in reports.
+
 ## Screenshot
 
 Yet to add screenshot here
@@ -28,6 +49,12 @@ Yet to add screenshot here
 4. Seed the database with `npm run seed`.
 5. Start the server with `npm run dev`.
 6. Open http://localhost:3000.
+
+To run the seed scripts separately:
+
+````bash
+npm run seed:providers
+npm run seed:experiences
 
 ## Data source
 
@@ -44,10 +71,18 @@ CMS file, download the CSV, keep it outside the project folder, and run:
 
 ```bash
 node db/seed/buildProviders.js "<path to the CSV>"
-```
+````
 
-OpenSlots is community-maintained and is not medical advice. Confirm details
-with the provider.
+### Demo experience data
+
+The experience-report seed creates 20 clearly labeled fictional demo providers
+and 1,000 synthetic reports for testing filters, pagination, ratings, and
+recommendations. Generated reports are stored only under providers whose names
+begin with `[DEMO]`, they are never attached to real CMS clinicians.
+
+The application displays a **Demo data** badge on generated reports. Demo
+records are fictional and do not describe real therapists or real patient
+experiences.
 
 ## License
 

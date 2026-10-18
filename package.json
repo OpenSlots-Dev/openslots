@@ -7,10 +7,12 @@
   "scripts": {
     "start": "node backend.js",
     "dev": "node --env-file=.env --watch backend.js",
-    "seed": "node --env-file=.env db/seed/seedProviders.js",
+    "seed": "npm run seed:providers && npm run seed:experiences",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "seed:providers": "node --env-file=.env db/seed/seedProviders.js",
+    "seed:experiences": "node --env-file=.env db/seed/seedExperienceReports.js"
   },
   "engines": {
     "node": ">=20.6.0"
