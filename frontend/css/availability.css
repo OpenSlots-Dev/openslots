@@ -105,7 +105,7 @@
 }
 
 .availability-page .filters label:not(.choice),
-.availability-page .report-form > label {
+.availability-page .report-form > label:not(.choice) {
   display: grid;
   gap: 0.35rem;
   font-weight: 650;
