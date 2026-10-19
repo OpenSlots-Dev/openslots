@@ -1,0 +1,315 @@
+.availability-page {
+  max-width: 70rem;
+}
+
+.availability-page .page-intro {
+  margin-bottom: 2rem;
+}
+
+.availability-page .page-intro h1 {
+  margin-top: 0;
+}
+
+.availability-page .demo-notice {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.availability-page .demo-data-badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  color: #5d4300;
+  background: var(--banner);
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.availability-page .panel {
+  margin-bottom: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  background: var(--panel);
+  border: 1px solid #dbe5e2;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 1rem rgb(30 52 64 / 6%);
+}
+
+.availability-page .panel h2 {
+  margin-top: 0;
+}
+
+.availability-page input[type="search"],
+.availability-page input[type="number"],
+.availability-page select,
+.availability-page textarea {
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid #9aaca8;
+  border-radius: 0.4rem;
+  font: inherit;
+}
+
+.availability-page textarea {
+  resize: vertical;
+}
+
+.availability-page button {
+  padding: 0.7rem 1rem;
+  color: #ffffff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 0.4rem;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.availability-page button:hover {
+  background: #256557;
+}
+
+.availability-page button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.availability-page .secondary-button {
+  color: var(--accent);
+  background: transparent;
+}
+
+.availability-page .secondary-button:hover {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.availability-page .delete-button {
+  color: #842029;
+  background: transparent;
+  border-color: #842029;
+}
+
+.availability-page .delete-button:hover {
+  color: #ffffff;
+  background: #842029;
+}
+
+.availability-page .filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.availability-page .filters label:not(.choice),
+.availability-page .report-form > label:not(.choice) {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 650;
+}
+
+.availability-page .choice {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.availability-page .choice input {
+  width: auto;
+}
+
+.availability-page .report-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.availability-page .report-form h2 {
+  margin: 0;
+}
+
+.availability-page fieldset {
+  border: 1px solid #dbe5e2;
+  border-radius: 0.4rem;
+}
+
+.availability-page legend {
+  font-weight: 650;
+}
+
+.availability-page .choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+}
+
+.availability-page .hint {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.availability-page .form-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.availability-page .status {
+  margin: 1rem 0;
+}
+
+.availability-page .status:empty {
+  display: none;
+}
+
+.availability-page .status.error {
+  padding: 0.75rem;
+  color: #842029;
+  background: #f8d7da;
+  border-radius: 0.4rem;
+}
+
+.availability-page .status.success {
+  padding: 0.75rem;
+  color: #155724;
+  background: #d9f0df;
+  border-radius: 0.4rem;
+}
+
+.availability-page .provider-list,
+.availability-page .history {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.availability-page .provider-list {
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+}
+
+.availability-page .report-card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--panel);
+  border: 1px solid #dbe5e2;
+  border-left: 0.3rem solid var(--accent);
+  border-radius: 0.5rem;
+}
+
+.availability-page .report-card h3 {
+  margin: 0;
+}
+
+.availability-page .card-heading,
+.availability-page .card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.availability-page .provider-meta,
+.availability-page .no-info {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.availability-page .report-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.availability-page .report-meta li {
+  padding: 0.2rem 0.55rem;
+  background: #e7f1ee;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+}
+
+.availability-page .report-meta .outdated {
+  color: #4a5560;
+  background: #e4e7e9;
+  font-weight: 700;
+}
+
+.availability-page .notes {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.availability-page .availability-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.availability-page .availability-badge.accepting {
+  color: #155724;
+  background: #d9f0df;
+}
+
+.availability-page .availability-badge.waitlist {
+  color: #5d4300;
+  background: #fbe9c4;
+}
+
+.availability-page .availability-badge.not-accepting {
+  color: #842029;
+  background: #f8d7da;
+}
+
+.availability-page .selected-provider {
+  margin: 1rem 0 1.5rem;
+  padding: 1.5rem;
+  color: #ffffff;
+  background: var(--ink);
+  border-radius: 0.75rem;
+}
+
+.availability-page .selected-provider h2 {
+  margin-top: 0;
+}
+
+.availability-page .selected-provider p {
+  margin-top: 0;
+}
+
+.availability-page .selected-provider .report-meta li {
+  color: var(--ink);
+}
+
+.availability-page .pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 44rem) {
+  .availability-page .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .availability-page .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .availability-page .filters button,
+  .availability-page .form-actions button {
+    width: 100%;
+  }
+}

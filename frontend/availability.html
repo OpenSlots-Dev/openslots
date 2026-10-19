@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Availability · OpenSlots</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/availability.css" />
+    <script type="module" src="js/availability.js"></script>
+  </head>
+  <body>
+    <aside class="crisis-banner" role="note">
+      In crisis? Call or text <a href="tel:988">988</a> (Suicide &amp; Crisis
+      Lifeline).
+    </aside>
+
+    <header class="site-header">
+      <a class="site-name" href="index.html">OpenSlots</a>
+      <nav aria-label="Main">
+        <ul class="site-nav">
+          <li>
+            <a href="availability.html" aria-current="page">Availability</a>
+          </li>
+          <li><a href="experiences.html">Experiences</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="page availability-page">
+      <header class="page-intro">
+        <h1>Therapist availability</h1>
+        <p class="lead">
+          See which therapists were recently reported as taking new patients,
+          and share what you heard when you called. Reports older than 30 days
+          are marked outdated and don't count toward a provider's current
+          status.
+        </p>
+
+        <p class="demo-notice">
+          Reports marked “Demo data” are fictional examples generated for
+          testing.
+        </p>
+      </header>
+
+      <div id="search-view">
+        <section class="panel" aria-labelledby="filters-title">
+          <h2 id="filters-title">Find providers</h2>
+          <form id="filters" class="filters" role="search">
+            <label>
+              Provider name
+              <input type="search" name="q" placeholder="e.g. Smith" />
+            </label>
+            <label>
+              City
+              <select id="city" name="city">
+                <option value="">Any city</option>
+              </select>
+            </label>
+            <label>
+              Status
+              <select id="status" name="status">
+                <option value="">Any status</option>
+              </select>
+            </label>
+            <label>
+              Insurance
+              <select id="insurance" name="insurance">
+                <option value="">Any insurance</option>
+              </select>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="telehealth" />
+              Offers telehealth
+            </label>
+            <button type="submit">Search</button>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="summary-title">
+          <h2 id="summary-title">City summary</h2>
+          <p id="summary-status" class="status" role="status"></p>
+        </section>
+
+        <section class="panel" aria-labelledby="results-title">
+          <h2 id="results-title">Providers</h2>
+          <p id="results-status" class="status" role="status"></p>
+          <ul id="provider-list" class="provider-list"></ul>
+
+          <nav class="pagination" aria-label="Results pages">
+            <button
+              type="button"
+              id="prev-page"
+              class="secondary-button"
+              disabled
+            >
+              Previous
+            </button>
+            <span id="page-info"></span>
+            <button
+              type="button"
+              id="next-page"
+              class="secondary-button"
+              disabled
+            >
+              Next
+            </button>
+          </nav>
+        </section>
+      </div>
+
+      <div id="detail-view" hidden>
+        <button type="button" id="back-to-results" class="secondary-button">
+          ← Back to results
+        </button>
+
+        <section class="selected-provider" aria-labelledby="detail-name">
+          <h2 id="detail-name" tabindex="-1"></h2>
+          <p id="detail-meta"></p>
+          <div id="detail-current"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="form-title">
+          <form id="report-form" class="report-form">
+            <h2 id="form-title">Report availability</h2>
+
+            <fieldset>
+              <legend>Is this provider accepting new patients?</legend>
+              <div id="status-options" class="choice-group"></div>
+            </fieldset>
+
+            <div id="waitlist-field" hidden>
+              <label for="waitlist-weeks">Waitlist length (weeks)</label>
+              <input
+                type="number"
+                id="waitlist-weeks"
+                name="waitlistWeeks"
+                min="1"
+                max="52"
+                step="1"
+              />
+            </div>
+
+            <fieldset>
+              <legend>Insurances accepted</legend>
+              <div id="insurance-options" class="choice-group"></div>
+            </fieldset>
+
+            <label class="choice">
+              <input
+                type="checkbox"
+                id="telehealth-offered"
+                name="telehealth"
+              />
+              Telehealth offered
+            </label>
+
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" rows="3"></textarea>
+            <p class="hint">
+              <span id="notes-count">0</span>/<span id="notes-max"></span>
+              characters. Please don't include diagnoses, medications, or other
+              personal health information.
+            </p>
+
+            <div class="form-actions">
+              <button type="submit" id="submit-report">Submit report</button>
+              <button
+                type="button"
+                id="cancel-edit"
+                class="secondary-button"
+                hidden
+              >
+                Cancel editing
+              </button>
+            </div>
+            <p id="form-status" class="status" role="status"></p>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="history-title">
+          <h2 id="history-title">Report history</h2>
+          <p id="history-empty" class="no-info">No availability reports yet.</p>
+          <ul id="history" class="history"></ul>
+        </section>
+      </div>
+
+      <p class="disclaimer">
+        OpenSlots is community-maintained and is not medical advice. Confirm
+        details with the provider before you visit.
+      </p>
+    </main>
+  </body>
+</html>

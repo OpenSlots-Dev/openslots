@@ -28,10 +28,6 @@ export function searchProviders({
   return getJSON(`/api/providers?${params}`);
 }
 
-export function getProvider(id) {
-  return getJSON(`/api/providers/${encodeURIComponent(id)}`);
-}
-
 export function getCities() {
   return getJSON("/api/providers/cities");
 }

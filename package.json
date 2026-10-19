@@ -12,21 +12,22 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "seed:providers": "node --env-file=.env db/seed/seedProviders.js",
-    "seed:experiences": "node --env-file=.env db/seed/seedExperienceReports.js"
+    "seed:experiences": "node --env-file=.env db/seed/seedExperienceReports.js",
+    "seed:availability": "node --env-file=.env db/seed/seedAvailabilityReports.js"
   },
   "engines": {
     "node": ">=20.6.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agilan11/openslots.git"
+    "url": "git+https://github.com/OpenSlots-Dev/openslots.git"
   },
   "author": "Ankita Mandalam and Agilan Balaraman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/agilan11/openslots/issues"
+    "url": "https://github.com/OpenSlots-Dev/openslots/issues"
   },
-  "homepage": "https://github.com/agilan11/openslots#readme",
+  "homepage": "https://github.com/OpenSlots-Dev/openslots#readme",
   "dependencies": {
     "express": "^5.3.0",
     "mongodb": "^7.7.0"

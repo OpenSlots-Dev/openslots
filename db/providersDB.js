@@ -7,7 +7,7 @@ function providers() {
   return getDB().collection(COLLECTION);
 }
 
-function escapeRegex(text) {
+export function escapeRegex(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
