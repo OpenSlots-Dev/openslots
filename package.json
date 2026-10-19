@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node backend.js",
     "dev": "node --env-file=.env --watch backend.js",
-    "seed": "npm run seed:providers && npm run seed:experiences",
+    "seed": "npm run seed:providers && npm run seed:experiences && npm run seed:availability",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
