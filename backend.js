@@ -1,8 +1,10 @@
 import express from "express";
 import { createExperienceReportIndexes } from "./db/experienceReportsDB.js";
+import { createAvailabilityIndexes } from "./db/availabilityReportsDB.js";
 import { connectDB } from "./db/myMongoDB.js";
 import providersRouter from "./routes/providers.js";
 import experienceReportsRouter from "./routes/experienceReports.js";
+import availabilityRouter from "./routes/availabilityReports.js";
 import { anonymousId } from "./middleware/anonymousId.js";
 
 const PORT = process.env.PORT || 3000;
@@ -14,6 +16,7 @@ app.use(express.static("frontend"));
 
 app.use("/api/providers", providersRouter);
 app.use("/api/experience-reports", experienceReportsRouter);
+app.use("/api/availability", availabilityRouter);
 app.use("/api", (req, res) => {
   res.status(404).json({ error: "Not found" });
 });
@@ -30,6 +33,7 @@ app.use((err, req, res, next) => {
 
 await connectDB();
 await createExperienceReportIndexes();
+await createAvailabilityIndexes();
 
 app.listen(PORT, () => {
   console.log(`OpenSlots running on http://localhost:${PORT}`);
