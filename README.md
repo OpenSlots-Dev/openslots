@@ -8,7 +8,7 @@
 
 **Demo video:** yet to add video link
 
-**Design document:** yet to add link
+**Design document:** [design-docs/design-document.md](design-docs/design-document.md)
 
 ## Project objective
 
@@ -63,7 +63,17 @@ health information, medical claims, or accusations in reports.
 
 ## Screenshot
 
-Yet to add screenshot here
+### Landing Page
+
+![OpenSlots landing page](design-docs/screenshots/landing-page.png)
+
+### Availability Page
+
+![OpenSlots Availability page](design-docs/screenshots/availability-feature.png)
+
+### Experiences Page
+
+![OpenSlots Experiences page](design-docs/screenshots/experiences-feature.png)
 
 ## Instructions to build
 
