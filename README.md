@@ -6,7 +6,7 @@
 
 **Live site:** [https://openslots.onrender.com/](https://openslots.onrender.com/)
 
-**Demo video:** yet to add video link
+**Demo video:** [Click here](https://youtu.be/uawLQwIX5Ow)
 
 **Design document:** [design-docs/design-document.md](design-docs/design-document.md)
 
