@@ -271,6 +271,7 @@ function historyItem(report) {
     report.notes
       ? el("p", { className: "notes", textContent: report.notes })
       : null
+    
   );
 
   if (report.isMine) {
