@@ -449,7 +449,9 @@ form.addEventListener("submit", async (event) => {
     await refreshDetail();
   } catch (error) {
     setStatus("#form-status", error.message, "error");
+    
   }
 });
 
 init();
+
