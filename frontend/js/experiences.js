@@ -364,6 +364,9 @@ async function loadMyReports() {
   setStatus(elements.myReportsStatus, "Loading your reports...");
 
   try {
+    // Only the first 50 reports are loaded, with no pagination controls.
+    // Users with more than 50 reports cannot access older reports from this panel.
+    // Consider adding pagination using the API's page and pages values.
     const result = await getMyExperienceReports();
     renderMyReports(result.items);
 
