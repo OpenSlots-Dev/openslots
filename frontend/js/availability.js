@@ -427,6 +427,9 @@ $("#cancel-edit").addEventListener("click", () => {
 });
 
 form.addEventListener("submit", async (event) => {
+  // Double-clicking Submit can send multiple POST requests and create duplicate reports.
+  // Consider adding an isSaving guard and disabling the submit button until
+  // the request finishes, then restoring it in a finally block.
   event.preventDefault();
   const report = readForm();
   const wasEditing = Boolean(state.editingId);
