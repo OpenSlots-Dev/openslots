@@ -317,16 +317,26 @@ function renderDetail({ provider, current, history }) {
   $("#history-empty").hidden = history.length > 0;
 }
 
+let providerRequestId = 0;
+
 async function openProvider(providerId) {
-  state.providerId = providerId;
+  const requestId = ++providerRequestId;
+
   resetForm();
   setStatus("#form-status", "");
+
   try {
-    renderDetail(await getProviderAvailability(providerId));
+    const detail = await getProviderAvailability(providerId);
+    // Ignore stale responses so the displayed provider and submitted ID match.
+    if (requestId !== providerRequestId) return;
+    state.providerId = providerId;
+    renderDetail(detail);
     $("#search-view").hidden = true;
     $("#detail-view").hidden = false;
     $("#detail-name").focus();
   } catch (error) {
+    // A stale request should not overwrite the current status.
+    if (requestId !== providerRequestId) return;
     setStatus("#results-status", error.message, "error");
   }
 }
