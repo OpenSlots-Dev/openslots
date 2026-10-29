@@ -16,7 +16,12 @@ function readCookie(req, name) {
     const [key, ...rest] = part.trim().split("=");
 
     if (key === name) {
-      return decodeURIComponent(rest.join("="));
+      // Replace malformed cookies safely.
+      try {
+        return decodeURIComponent(rest.join("="));
+      } catch {
+        return null;
+      }
     }
   }
 
